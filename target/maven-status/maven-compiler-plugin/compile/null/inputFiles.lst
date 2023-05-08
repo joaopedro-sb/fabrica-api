@@ -1,2 +1,14 @@
-C:\Users\João Pedro\Documents\fabrica-api\src\main\java\edu\utfpr\GreetingResource.java
-C:\Users\João Pedro\Documents\fabrica-api\src\main\java\edu\utfpr\MyEntity.java
+C:\Users\João Pedro\Documents\fabrica-api\src\main\java\edu\utfpr\entity\Questionario.java
+C:\Users\João Pedro\Documents\fabrica-api\src\main\java\edu\utfpr\entity\Pessoa.java
+C:\Users\João Pedro\Documents\fabrica-api\src\main\java\edu\utfpr\entity\Questao.java
+C:\Users\João Pedro\Documents\fabrica-api\src\main\java\edu\utfpr\service\AlternativaService.java
+C:\Users\João Pedro\Documents\fabrica-api\src\main\java\edu\utfpr\controller\PessoaController.java
+C:\Users\João Pedro\Documents\fabrica-api\src\main\java\edu\utfpr\service\PessoaService.java
+C:\Users\João Pedro\Documents\fabrica-api\src\main\java\edu\utfpr\repository\AlternativaRepository.java
+C:\Users\João Pedro\Documents\fabrica-api\src\main\java\edu\utfpr\repository\QuestaoRepository.java
+C:\Users\João Pedro\Documents\fabrica-api\src\main\java\edu\utfpr\service\QuestionarioService.java
+C:\Users\João Pedro\Documents\fabrica-api\src\main\java\edu\utfpr\repository\QuestionarioRepository.java
+C:\Users\João Pedro\Documents\fabrica-api\src\main\java\edu\utfpr\controller\QuestionarioController.java
+C:\Users\João Pedro\Documents\fabrica-api\src\main\java\edu\utfpr\service\QuestaoService.java
+C:\Users\João Pedro\Documents\fabrica-api\src\main\java\edu\utfpr\entity\Alternativa.java
+C:\Users\João Pedro\Documents\fabrica-api\src\main\java\edu\utfpr\repository\PessoaRepository.java
