@@ -20,6 +20,10 @@ public class PessoaService {
         return pessoaRepository.findById(id);
     }
 
+    public Pessoa retrieve(String email) {
+        return pessoaRepository.findByEmail(email);
+    }
+
     public void create(Pessoa pessoa) {
         pessoaRepository.persist(pessoa);
     }

@@ -6,5 +6,7 @@ import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
 public class PessoaRepository implements PanacheRepository<Pessoa>{
-
+    public Pessoa findByEmail(String email) {
+        return find("email", email).firstResult();
+    }
 }

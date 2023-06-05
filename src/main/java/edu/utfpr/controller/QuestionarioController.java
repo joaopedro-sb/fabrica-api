@@ -23,6 +23,24 @@ public class QuestionarioController {
             e.printStackTrace();
         }
 
+        questionarios.forEach(questionario -> {
+            questionario.getPessoa().setQuestionarioList(null);
+        });
+
+        questionarios.forEach(questionario -> {
+            questionario.getQuestaoList().forEach(questao -> {
+                questao.setQuestionario(null);
+            });
+        });
+
+        questionarios.forEach(questionario -> {
+            questionario.getQuestaoList().forEach(questao -> {
+                questao.getAlternativaList().forEach(alternativa -> {
+                    alternativa.setQuestao(null);
+                });
+            });
+        });
+
         return questionarios;
     }
 
@@ -35,6 +53,15 @@ public class QuestionarioController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        questionario.getPessoa().setQuestionarioList(null);
+        questionario.getQuestaoList().forEach(questao -> {
+            questao.setQuestionario(null);
+        });
+        questionario.getQuestaoList().forEach(questao -> {
+            questao.getAlternativaList().forEach(alternativa -> {
+                alternativa.setQuestao(null);
+            });
+        });
 
         return questionario;
     }
@@ -57,6 +84,16 @@ public class QuestionarioController {
     public Object update(Questionario questionario) {
         try{
             questionarioService.update(questionario);
+            questionario.getPessoa().setQuestionarioList(null);
+            questionario.getQuestaoList().forEach(questao -> {
+                questao.setQuestionario(null);
+            });
+            questionario.getQuestaoList().forEach(questao -> {
+                questao.getAlternativaList().forEach(alternativa -> {
+                    alternativa.setQuestao(null);
+                });
+            });
+
             return questionario;
         } catch (Exception e) {
             e.printStackTrace();

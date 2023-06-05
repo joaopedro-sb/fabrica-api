@@ -5,6 +5,7 @@ import edu.utfpr.service.PessoaService;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.*;
+import org.jasypt.util.password.BasicPasswordEncryptor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +24,10 @@ public class PessoaController {
             e.printStackTrace();
         }
 
+        pessoas.forEach(pessoa -> {
+            pessoa.setQuestionarioList(null);
+        });
+
         return pessoas;
     }
 
@@ -36,6 +41,28 @@ public class PessoaController {
             e.printStackTrace();
         }
 
+        pessoa.setQuestionarioList(null);
+
+        return pessoa;
+    }
+
+    @GET
+    @Path("/login/{email}/{senha}")
+    public Pessoa retrieve(@PathParam("email") String email, @PathParam("senha") String senha) {
+        Pessoa pessoa = new Pessoa();
+        try{
+            pessoa = pessoaService.retrieve(email);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        pessoa.setQuestionarioList(null);
+
+        BasicPasswordEncryptor passwordEncryptor = new BasicPasswordEncryptor();
+        if(!passwordEncryptor.checkPassword(senha, pessoa.getSenha())){
+            pessoa = null;
+        }
+
         return pessoa;
     }
 
@@ -43,7 +70,12 @@ public class PessoaController {
     @Transactional
     public Object create(Pessoa pessoa) {
         try{
+            BasicPasswordEncryptor passwordEncryptor = new BasicPasswordEncryptor();
+            pessoa.setSenha(passwordEncryptor.encryptPassword(pessoa.getSenha()));
+
             pessoaService.create(pessoa);
+            pessoa.setQuestionarioList(null);
+
             return pessoa;
         } catch (Exception e) {
             e.printStackTrace();
@@ -56,6 +88,8 @@ public class PessoaController {
     public Object update(Pessoa pessoa) {
         try{
             pessoaService.update(pessoa);
+            pessoa.setQuestionarioList(null);
+
             return pessoa;
         } catch (Exception e) {
             e.printStackTrace();

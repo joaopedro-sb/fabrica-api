@@ -1,5 +1,6 @@
 package edu.utfpr.entity;
 
+import io.quarkus.runtime.annotations.IgnoreProperty;
 import jakarta.persistence.*;
 import jakarta.ws.rs.DefaultValue;
 import lombok.Getter;
@@ -14,7 +15,7 @@ import java.util.List;
 @Setter
 @ToString
 @NoArgsConstructor
-@Table(name = "questoes")
+@Table(name = "questao")
 public class Questao {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,6 +45,9 @@ public class Questao {
 
     @OneToMany(mappedBy = "questao", fetch = FetchType.LAZY)
     private List<Alternativa> alternativaList;
+
+    @OneToMany(mappedBy = "questao", fetch = FetchType.LAZY)
+    private List<Resposta> respostaList;
 
     @Transient
     private Boolean delete = false;

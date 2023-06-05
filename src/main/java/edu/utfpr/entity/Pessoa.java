@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.sql.Blob;
 import java.util.List;
 
 @Entity
@@ -44,6 +45,15 @@ public class Pessoa {
     @Column(name = "periodo")
     private Integer periodo;
 
-    @OneToMany(mappedBy = "pessoa", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @Column(name = "senha", nullable = false, length = 100)
+    private String senha;
+
+    @Column(name = "imagem")
+    private Blob imagem;
+
+    @OneToMany(mappedBy = "pessoa", fetch = FetchType.LAZY)
     private List<Questionario> questionarioList;
+
+    @OneToMany(mappedBy = "pessoa", fetch = FetchType.LAZY)
+    private List<Envio> envioList;
 }

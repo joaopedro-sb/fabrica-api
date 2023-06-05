@@ -12,7 +12,7 @@ import lombok.ToString;
 @Setter
 @ToString
 @NoArgsConstructor
-@Table(name = "alternativas")
+@Table(name = "alternativa")
 public class Alternativa {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,7 +30,7 @@ public class Alternativa {
     @DefaultValue("false")
     private Boolean isCorreta = false;
 
-    @Column(name = "peso")
+    @Column(name = "peso", precision = 2)
     private Double peso;
 
     @Column(name = "justificativa", length = 32000)

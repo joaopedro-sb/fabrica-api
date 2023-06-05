@@ -36,6 +36,9 @@ public class Questionario {
     @Column(name = "materia", length = 100)
     private String materia;
 
+    @Column(name = "numerotentativas", nullable = false)
+    private Integer numeroTentativas = 1;
+
     @Column(name = "ativo")
     private Boolean isAtivo = true;
 
@@ -44,4 +47,7 @@ public class Questionario {
 
     @OneToMany(mappedBy = "questionario", fetch = FetchType.LAZY)
     private List<Questao> questaoList;
+
+    @OneToMany(mappedBy = "questionario", fetch = FetchType.LAZY)
+    private List<Envio> envioList;
 }
