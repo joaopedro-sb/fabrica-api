@@ -1,5 +1,6 @@
 package edu.utfpr.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -31,10 +32,10 @@ public class Pessoa {
     private Integer idade;
 
     @Column(name = "professor")
-    private Boolean isProfessor;
+    private Boolean isProfessor = false;
 
     @Column(name = "monitor")
-    private Boolean isMonitor;
+    private Boolean isMonitor = false;
 
     @Column(name = "ra", nullable = false, length = 7)
     private String ra;
@@ -45,15 +46,18 @@ public class Pessoa {
     @Column(name = "periodo")
     private Integer periodo;
 
+    @JsonIgnore
     @Column(name = "senha", nullable = false, length = 100)
     private String senha;
 
+    @JsonIgnore
     @Column(name = "imagem")
     private Blob imagem;
 
     @OneToMany(mappedBy = "pessoa", fetch = FetchType.LAZY)
     private List<Questionario> questionarioList;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "pessoa", fetch = FetchType.LAZY)
     private List<Envio> envioList;
 }

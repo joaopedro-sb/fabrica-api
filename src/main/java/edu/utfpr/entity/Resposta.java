@@ -1,5 +1,7 @@
 package edu.utfpr.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,6 +22,7 @@ public class Resposta {
     @Column(name = "idresposta", nullable = false)
     private Long id;
 
+    @JsonIgnoreProperties({"respostaList", "pessoa", "questionario"})
     @ManyToOne
     @JoinColumn(name = "idenvio", nullable = false)
     private Envio envio;
@@ -34,9 +37,11 @@ public class Resposta {
     @Column(name = "descritiva", length = 32000)
     private String descritiva;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "resposta", fetch = FetchType.LAZY)
     private List<AlternativaResposta> alternativaRespostaList;
 
+    @JsonIgnore
     @Transient
     private Boolean delete = false;
 }

@@ -1,5 +1,6 @@
 package edu.utfpr.service;
 
+import edu.utfpr.entity.Alternativa;
 import edu.utfpr.entity.Envio;
 import edu.utfpr.entity.Questao;
 import edu.utfpr.entity.Resposta;
@@ -51,8 +52,18 @@ public class RespostaService {
 
                 if(resposta.getAlternativaRespostaList() != null) {
                     for (int i = 0; i < resposta.getAlternativaRespostaList().size(); i++) {
-                        resposta.getAlternativaRespostaList().get(i).setResposta(resposta);
-                        alternativaRespostaService.create(resposta.getAlternativaRespostaList().get(i));
+                        if(resposta.getAlternativaRespostaList().get(i).getAlternativa() == null) {
+                            throw new IllegalArgumentException("Alternativa não pode ser nula");
+                        }else {
+                            AlternativaRepository alternativaRepository = new AlternativaRepository();
+                            Alternativa alternativa = alternativaRepository.findById(resposta.getAlternativaRespostaList().get(i).getAlternativa().getId());
+                            if (alternativa == null) {
+                                throw new IllegalArgumentException("Alternativa " + resposta.getAlternativaRespostaList().get(i).getAlternativa().getId() + " não encontrada");
+                            }
+                            resposta.getAlternativaRespostaList().get(i).setAlternativa(alternativa);
+                            resposta.getAlternativaRespostaList().get(i).setResposta(resposta);
+                            alternativaRespostaService.create(resposta.getAlternativaRespostaList().get(i));
+                        }
                     }
                 }
             }

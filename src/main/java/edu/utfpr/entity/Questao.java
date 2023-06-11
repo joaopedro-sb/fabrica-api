@@ -1,5 +1,7 @@
 package edu.utfpr.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.quarkus.runtime.annotations.IgnoreProperty;
 import jakarta.persistence.*;
 import jakarta.ws.rs.DefaultValue;
@@ -43,12 +45,15 @@ public class Questao {
     @DefaultValue("false")
     private Boolean isOrdemAleatoria = false;
 
+    @JsonIgnoreProperties({"questao"})
     @OneToMany(mappedBy = "questao", fetch = FetchType.LAZY)
     private List<Alternativa> alternativaList;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "questao", fetch = FetchType.LAZY)
     private List<Resposta> respostaList;
 
+    @JsonIgnore
     @Transient
     private Boolean delete = false;
 }

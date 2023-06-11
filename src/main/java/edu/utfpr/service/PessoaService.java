@@ -44,6 +44,7 @@ public class PessoaService {
         pessoaToUpdate.setRa(pessoa.getRa());
         pessoaToUpdate.setEmail(pessoa.getEmail());
         pessoaToUpdate.setPeriodo(pessoa.getPeriodo());
+        pessoaToUpdate.setSenha(pessoa.getSenha());
         pessoaRepository.persist(pessoaToUpdate);
     }
 

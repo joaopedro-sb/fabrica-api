@@ -25,6 +25,10 @@ public class QuestionarioService {
         return questionarioRepository.findById(id);
     }
 
+    public List<Questionario> retrieveByPessoa(Long id) {
+        return questionarioRepository.findByPessoa(id);
+    }
+
     public void create(Questionario questionario) {
         if(questionario.getPessoa() == null){
             throw new IllegalArgumentException("ID da pessoa não pode ser nulo");

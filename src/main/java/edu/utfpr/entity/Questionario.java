@@ -1,5 +1,9 @@
 package edu.utfpr.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.jsonschema.JsonSerializableSchema;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,6 +24,7 @@ public class Questionario {
     @Column(name = "idquestionario", nullable = false)
     private Long id;
 
+    @JsonIgnoreProperties({"questionarioList", "envioList"})
     @ManyToOne
     @JoinColumn(name = "idcriador", nullable = false)
     private Pessoa pessoa;
@@ -45,9 +50,11 @@ public class Questionario {
     @Column(name = "ordemaleatoria")
     private Boolean isOrdemAleatoria = false;
 
+    @JsonIgnoreProperties({"questionario"})
     @OneToMany(mappedBy = "questionario", fetch = FetchType.LAZY)
     private List<Questao> questaoList;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "questionario", fetch = FetchType.LAZY)
     private List<Envio> envioList;
 }

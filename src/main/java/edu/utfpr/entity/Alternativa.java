@@ -1,5 +1,6 @@
 package edu.utfpr.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.ws.rs.DefaultValue;
 import lombok.Getter;
@@ -36,6 +37,7 @@ public class Alternativa {
     @Column(name = "justificativa", length = 32000)
     private String justificativa;
 
+    @JsonIgnore
     @Transient
     private Boolean delete = false;
 }

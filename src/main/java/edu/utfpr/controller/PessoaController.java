@@ -26,6 +26,8 @@ public class PessoaController {
 
         pessoas.forEach(pessoa -> {
             pessoa.setQuestionarioList(null);
+            pessoa.setEnvioList(null);
+            pessoa.setSenha(null);
         });
 
         return pessoas;
@@ -42,6 +44,8 @@ public class PessoaController {
         }
 
         pessoa.setQuestionarioList(null);
+        pessoa.setEnvioList(null);
+        pessoa.setSenha(null);
 
         return pessoa;
     }
@@ -57,6 +61,8 @@ public class PessoaController {
         }
 
         pessoa.setQuestionarioList(null);
+        pessoa.setEnvioList(null);
+        pessoa.setSenha(null);
 
         BasicPasswordEncryptor passwordEncryptor = new BasicPasswordEncryptor();
         if(!passwordEncryptor.checkPassword(senha, pessoa.getSenha())){
@@ -75,6 +81,8 @@ public class PessoaController {
 
             pessoaService.create(pessoa);
             pessoa.setQuestionarioList(null);
+            pessoa.setEnvioList(null);
+            pessoa.setSenha(null);
 
             return pessoa;
         } catch (Exception e) {
@@ -84,11 +92,17 @@ public class PessoaController {
     }
 
     @PUT
+    @Path("/{id}")
     @Transactional
     public Object update(Pessoa pessoa) {
         try{
+            BasicPasswordEncryptor passwordEncryptor = new BasicPasswordEncryptor();
+            pessoa.setSenha(passwordEncryptor.encryptPassword(pessoa.getSenha()));
+
             pessoaService.update(pessoa);
             pessoa.setQuestionarioList(null);
+            pessoa.setEnvioList(null);
+            pessoa.setSenha(null);
 
             return pessoa;
         } catch (Exception e) {
