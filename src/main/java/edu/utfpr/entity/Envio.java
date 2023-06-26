@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -36,10 +36,10 @@ public class Envio {
     private String feedback;
 
     @Column(name = "datahorainicio", nullable = false)
-    private Timestamp dataHoraInicio;
+    private LocalDateTime dataHoraInicio;
 
     @Column(name = "datahorafim")
-    private Timestamp dataHoraFim;
+    private LocalDateTime dataHoraFim;
 
     @OneToMany(mappedBy = "envio", fetch = FetchType.LAZY)
     private List<Resposta> respostaList;
